@@ -38,8 +38,8 @@ public class ProxyUtilUnitTest {
     @Test
     public void testGetProxySimpleFlightJson() {
         
-        Flight f1 = new Flight("COL2256", 1, "2016-01-02T10:00:00.000Z", "80.0", 120, "CPH", "CDG");
-        Flight f2= new Flight("COL2334", 1, "2016-01-02T16:00:00.000Z", "120.0", 180, "CPH", "BCN");
+        Flight f1 = new Flight("COL2256", 1, "2016-01-02T10:00:00.000Z", 80.0f, 120, "CPH", "CDG");
+        Flight f2= new Flight("COL2334", 1, "2016-01-02T16:00:00.000Z", 120.0f, 180, "CPH", "BCN");
 
         Gson gson = new Gson();
         String f1json = gson.toJson(f1);
@@ -57,8 +57,8 @@ public class ProxyUtilUnitTest {
     @Test
     public void testGetProxyFlightJsonWithParam() {
         
-        Flight f1 = new Flight("COL2256", 2, "2016-01-02T10:00:00.000Z", "160.0", 120, "CPH", "CDG");
-        Flight f2= new Flight("COL2334", 2, "2016-01-02T16:00:00.000Z", "240.0", 180, "CPH", "BCN");
+        Flight f1 = new Flight("COL2256", 2, "2016-01-02T10:00:00.000Z", 160.0f, 120, "CPH", "CDG");
+        Flight f2= new Flight("COL2334", 2, "2016-01-02T16:00:00.000Z", 240.0f, 180, "CPH", "BCN");
 
         Gson gson = new Gson();
         String f1json = gson.toJson(f1);

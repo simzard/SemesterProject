@@ -17,9 +17,9 @@ public class proxyUtil {
     // The method must get flightinfo from other airlines.
     public static String httpGetFlight(String from, String timeDate, int persons) {
 
-        Flight f1 = new Flight("COL2256", 1, "2016-01-02T10:00:00.000Z", "80.0", 120, "CPH", "CDG");
+        Flight f1 = new Flight("COL2256", 1, "2016-01-02T10:00:00.000Z", 80.0f, 120, "CPH", "CDG");
 
-        Flight f2 = new Flight("COL2334", 1, "2016-01-02T16:00:00.000Z", "120.0", 180, "CPH", "BCN");
+        Flight f2 = new Flight("COL2334", 1, "2016-01-02T16:00:00.000Z", 120.0f, 180, "CPH", "BCN");
 
         Gson gson = new Gson();
         String f1json = gson.toJson(f1);
