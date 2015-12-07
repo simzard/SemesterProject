@@ -6,21 +6,22 @@
 package entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * 
+ *
  */
-
 @Entity
 public class Flight {
-    
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightID;
-    private String airLine;
     private int numberOfSeats;
     private String date;
-    private String totalPrice;
+    private float totalPrice;
     private int traveltime;
     private String origin;
     private String destination;
@@ -28,9 +29,8 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(String flightID, String airLine, int numberOfSeats, String date, String totalPrice, int traveltime, String origin, String destination) {
+    public Flight(String flightID, int numberOfSeats, String date, float totalPrice, int traveltime, String origin, String destination) {
         this.flightID = flightID;
-        this.airLine = airLine;
         this.numberOfSeats = numberOfSeats;
         this.date = date;
         this.totalPrice = totalPrice;
@@ -39,9 +39,7 @@ public class Flight {
         this.destination = destination;
     }
 
-    
-    public Flight(String flightID, int numberOfSeats, String date, String totalPrice, int traveltime, String origin, String destination) {
-        this.flightID = flightID;
+    public Flight(int numberOfSeats, String date, float totalPrice, int traveltime, String origin, String destination) {
         this.numberOfSeats = numberOfSeats;
         this.date = date;
         this.totalPrice = totalPrice;
@@ -49,22 +47,21 @@ public class Flight {
         this.origin = origin;
         this.destination = destination;
     }
- 
-    
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public String getFlightID() {
         return flightID;
     }
 
     public void setFlightID(String flightID) {
         this.flightID = flightID;
-    }
-
-    public String getAirLine() {
-        return airLine;
-    }
-
-    public void setAirLine(String airLine) {
-        this.airLine = airLine;
     }
 
     public int getNumberOfSeats() {
@@ -81,14 +78,6 @@ public class Flight {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public int getTraveltime() {
@@ -114,8 +103,5 @@ public class Flight {
     public void setDestination(String destination) {
         this.destination = destination;
     }
-    
-    
-    
-    
+
 }
