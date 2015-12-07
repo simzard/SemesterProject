@@ -37,7 +37,9 @@ public class Airline implements Serializable {
     public Airline() {
     }
 
-    
+    public void addFlight(Flight f) {
+       flights.add(f);
+    }
     
     public String getAirline() {
         return airline;
