@@ -7,6 +7,7 @@ package interfaces;
 
 import entity.Airline;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -14,6 +15,6 @@ import java.util.List;
  */
 public interface AirlinesIF {
 
-    List<Airline> getAirlines(String from, String timeDate, int persons);
-    List<Airline> getAirlines(String from, String to, String timeDate, int persons);
+    List<Airline> getAirlines(String from, String timeDate, int persons) throws InterruptedException, ExecutionException;
+    List<Airline> getAirlines(String from, String to, String timeDate, int persons) throws InterruptedException, ExecutionException;
 }
