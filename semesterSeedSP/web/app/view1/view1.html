@@ -2,34 +2,52 @@
 
 
 <form>
-    <input type="text" name="fromCity" value="From City" />         
-    <input type="text" name="toCity" value="To City" />   
-    <select name="fromDate">
+    <input ng-model="ctrl.fromCity" placeholder="From City" type="text" name="fromCity"/>         
+    <input ng-model="ctrl.toCity" placeholder="To City" type="text" name="toCity" value="To City"/>  
+    
+    <select ng-model="ctrl.fromDate" placeholder="From Date" name="fromDate">
         <option>01-10-2015</option>
         <option>02-10-2015</option>
         <option>03-10-2015</option>
         <option>04-10-2015</option>
         <option>05-10-2015</option>
     </select>
-    <select name="toDate">
+    <select ng-model="ctrl.toDate" name="toDate">
         <option>01-10-2015</option>
         <option>02-10-2015</option>
         <option>03-10-2015</option>
         <option>04-10-2015</option>
         <option>05-10-2015</option>
     </select>
-    <select name="numberOfTickets">
+    <select ng-model="ctrl.numberOfTickets" name="numberOfTickets">
         <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
     </select>
-    <input ng-click="ctrl.clickedButton=true" type="submit" value="Search" name="searchButton" />
+    <input ng-click="ctrl.getInfo()" type="submit" value="Search" name="searchButton" />
 </form>        
+<br>
+<p>From City: {{ctrl.fromCity}}</p>
+<p>To City: {{ctrl.toCity}}</p>
+<p>From date: {{ctrl.fromDate}}</p>
+<p>To Date: {{ctrl.toDate}}</p>
+<p>Number Of Seats: {{ctrl.numberOfTickets}}</p>
 
-<div ng-show="ctrl.clickedButton">
-    <p>{{ctrl.getResult().airline}}</p>
-    <ul ng-repeat="flight in ctrl.getResult().flights">
+<div ng-show="ctrl.buttonClicked">
+    
+    <select ng-model="flightOrder" name="OrderBy">OrderBy:
+        <option value="date">Date</option>
+        <option value="priceTotal">Price</option>
+        <option value="numberOfSeats">Seats</option>
+    </select><br><br>
+    
+   
+    
+    <ul ng-repeat="flight in ctrl.dummyData | orderBy: flightOrder">
+        <li>
+             airline: {{ flight.airline }} 
+        </li>
         <li>
              flightId: {{ flight.flightId }} 
         </li>
