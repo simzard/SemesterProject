@@ -26,6 +26,11 @@ public class Flight {
     private String origin;
     private String destination;
 
+    @Override
+    public String toString() {
+        return "Flight{" + "flightID=" + flightID + ", numberOfSeats=" + numberOfSeats + ", date=" + date + ", totalPrice=" + totalPrice + ", traveltime=" + traveltime + ", origin=" + origin + ", destination=" + destination + '}';
+    }
+
     public Flight() {
     }
 
