@@ -37,13 +37,12 @@ public class FlightsResource {
     @Context
     private UriInfo context;
 
-  
     public FlightsResource() {
     }
 
     /**
-     * Returns a JSON array with flight objects
-     * Based on FROM - DATE - NUMTICKETS
+     * Returns a JSON array with flight objects Based on FROM - DATE -
+     * NUMTICKETS
      */
     @GET
     @Path("{from}/{date}/{numTickets}")
@@ -67,7 +66,61 @@ public class FlightsResource {
         String returnString = "[";
         Gson gson = new Gson();
 
-       // Loop through ArrayList of Airlines       
+        // Loop through ArrayList of Airlines       
+        for (Airline al : airlines) {
+
+            // Loop through each Airline, that has a Arraylist of Flights.
+            for (int i = 0; i < al.getFlights().size(); i++) {
+
+                Ticket ticket = new Ticket();
+                ticket.setAirLine(al.getAirline());
+                ticket.setFlightID(al.getFlights().get(i).getFlightID());
+                ticket.setNumberOfSeats(al.getFlights().get(i).getNumberOfSeats());
+                ticket.setDate(al.getFlights().get(i).getDate());
+                ticket.setTotalPrice(al.getFlights().get(i).getTotalPrice());
+                ticket.setTraveltime(al.getFlights().get(i).getTraveltime());
+                ticket.setOrigin(al.getFlights().get(i).getOrigin());
+                ticket.setDestination(al.getFlights().get(i).getDestination());
+
+                String json = gson.toJson(ticket);
+                returnString = returnString + json;
+            }
+
+        }
+        returnString = returnString + "]";
+        return returnString;
+
+    }
+
+    /**
+     * Returns a JSON array with flight objects Based on FROM - TO - DATE -
+     * NUMTICKETS
+     */
+
+    @GET
+    @Path("{from}/{to}/{date}/{numTickets}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getFlightInfo(
+            @PathParam("from") String from,
+            @PathParam("to") String to,
+            @PathParam("date") String date,
+            @PathParam("numTickets") int tickets) {
+
+        AirlineFetcher af = new AirlineFetcher();
+
+        List<Airline> airlines = null;
+        try {
+            airlines = af.getAirlines(from, to, date, tickets);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FlightsResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(FlightsResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String returnString = "[";
+        Gson gson = new Gson();
+
+        // Loop through ArrayList of Airlines       
         for (Airline al : airlines) {
 
             // Loop through each Airline, that has a Arraylist of Flights.
@@ -94,4 +147,3 @@ public class FlightsResource {
     }
 
 }
-
