@@ -4,16 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="a"/>
         <group>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/rest/ApplicationConfig.java</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Flight.java</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Airline.java</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/test/test/ProxyUtilUnitTest.java</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/rest/proxyUtil.java</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/interfaces/AirlinesIF.java</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/util/AirlineFetcher.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/rest/ApplicationConfig.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/conf/persistence.xml</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Flight.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/web/index.html</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/web/app/view1/view1.js</file>
-            <file>file:/home/simon/SemesterProject/semesterSeedSP/web/app/view1/view1.html</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/exceptions/FlightNotFoundException.java</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/util/AirLineHelper.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/util/AirlineFetcher.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/web/app/view1/view1.html</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/test/test/ProxyUtilUnitTest.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Airline.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/rest/proxyUtil.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/web/app/app.js</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/deploy/DeploymentConfiguration.java</file>
         </group>
     </open-files>
 </project-private>

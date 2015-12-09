@@ -1,0 +1,55 @@
+<h1>Momondoish logo</h1>
+
+
+<form>
+    <input type="text" name="fromCity" value="From City" />         
+    <input type="text" name="toCity" value="To City" />   
+    <select name="fromDate">
+        <option>01-10-2015</option>
+        <option>02-10-2015</option>
+        <option>03-10-2015</option>
+        <option>04-10-2015</option>
+        <option>05-10-2015</option>
+    </select>
+    <select name="toDate">
+        <option>01-10-2015</option>
+        <option>02-10-2015</option>
+        <option>03-10-2015</option>
+        <option>04-10-2015</option>
+        <option>05-10-2015</option>
+    </select>
+    <select name="numberOfTickets">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
+    <input ng-click="ctrl.clickedButton=true" type="submit" value="Search" name="searchButton" />
+</form>        
+
+<div ng-show="ctrl.clickedButton">
+    <p>{{ctrl.getResult().airline}}</p>
+    <ul ng-repeat="flight in ctrl.getResult().flights">
+        <li>
+             flightId: {{ flight.flightId }} 
+        </li>
+        <li>
+             numberOfSeats: {{ flight.numberOfSeats }} 
+        </li>
+        <li>
+             date: {{ flight.date }} 
+        </li>
+        <li>
+             priceTotal: {{ flight.priceTotal }} 
+        </li>
+        <li>
+             travelTime: {{ flight.travelTime }} 
+        </li>
+        <li>
+             origin: {{ flight.origin }} 
+        </li>
+        <li>
+             destination: {{ flight.destination }} 
+        </li>
+    </ul>
+</div>
