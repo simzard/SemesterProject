@@ -6,6 +6,7 @@
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import entity.Airline;
 import entity.Flight;
 import entity.Ticket;
@@ -24,6 +25,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import util.AirlineFetcher;
 
 /**
@@ -53,8 +55,8 @@ public class FlightsResource {
             @PathParam("numTickets") int tickets) {
 
         AirlineFetcher af = new AirlineFetcher();
-
         List<Airline> airlines = null;
+
         try {
             airlines = af.getAirlines(from, date, tickets);
         } catch (InterruptedException ex) {
@@ -63,8 +65,7 @@ public class FlightsResource {
             Logger.getLogger(FlightsResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String returnString = "[";
-        Gson gson = new Gson();
+        JSONArray jsonarray = new JSONArray();
 
         // Loop through ArrayList of Airlines       
         for (Airline al : airlines) {
@@ -72,31 +73,29 @@ public class FlightsResource {
             // Loop through each Airline, that has a Arraylist of Flights.
             for (int i = 0; i < al.getFlights().size(); i++) {
 
-                Ticket ticket = new Ticket();
-                ticket.setAirLine(al.getAirline());
-                ticket.setFlightID(al.getFlights().get(i).getFlightID());
-                ticket.setNumberOfSeats(al.getFlights().get(i).getNumberOfSeats());
-                ticket.setDate(al.getFlights().get(i).getDate());
-                ticket.setTotalPrice(al.getFlights().get(i).getTotalPrice());
-                ticket.setTraveltime(al.getFlights().get(i).getTraveltime());
-                ticket.setOrigin(al.getFlights().get(i).getOrigin());
-                ticket.setDestination(al.getFlights().get(i).getDestination());
+                JSONObject jo = new JSONObject();
 
-                String json = gson.toJson(ticket);
-                returnString = returnString + json;
+                jo.put("airline", al.getAirline());
+                jo.put("flightid", al.getFlights().get(i).getFlightID());
+                jo.put("numberofseats", al.getFlights().get(i).getNumberOfSeats());
+                jo.put("date", al.getFlights().get(i).getDate());
+                jo.put("totalprice", al.getFlights().get(i).getTotalPrice());
+                jo.put("traveltime", al.getFlights().get(i).getTraveltime());
+                jo.put("origin", al.getFlights().get(i).getOrigin());
+                jo.put("destination", al.getFlights().get(i).getDestination());
+
+                jsonarray.add(jo);
             }
-
         }
-        returnString = returnString + "]";
-        return returnString;
-
+        Gson gson = new Gson();
+        String json = gson.toJson(jsonarray);
+        return json;
     }
 
     /**
      * Returns a JSON array with flight objects Based on FROM - TO - DATE -
      * NUMTICKETS
      */
-
     @GET
     @Path("{from}/{to}/{date}/{numTickets}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -107,8 +106,8 @@ public class FlightsResource {
             @PathParam("numTickets") int tickets) {
 
         AirlineFetcher af = new AirlineFetcher();
-
         List<Airline> airlines = null;
+
         try {
             airlines = af.getAirlines(from, to, date, tickets);
         } catch (InterruptedException ex) {
@@ -117,33 +116,29 @@ public class FlightsResource {
             Logger.getLogger(FlightsResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String returnString = "[";
-        Gson gson = new Gson();
-
+        JSONArray jsonarray = new JSONArray();
         // Loop through ArrayList of Airlines       
         for (Airline al : airlines) {
 
             // Loop through each Airline, that has a Arraylist of Flights.
             for (int i = 0; i < al.getFlights().size(); i++) {
 
-                Ticket ticket = new Ticket();
-                ticket.setAirLine(al.getAirline());
-                ticket.setFlightID(al.getFlights().get(i).getFlightID());
-                ticket.setNumberOfSeats(al.getFlights().get(i).getNumberOfSeats());
-                ticket.setDate(al.getFlights().get(i).getDate());
-                ticket.setTotalPrice(al.getFlights().get(i).getTotalPrice());
-                ticket.setTraveltime(al.getFlights().get(i).getTraveltime());
-                ticket.setOrigin(al.getFlights().get(i).getOrigin());
-                ticket.setDestination(al.getFlights().get(i).getDestination());
+                JSONObject jo = new JSONObject();
 
-                String json = gson.toJson(ticket);
-                returnString = returnString + json;
+                jo.put("airline", al.getAirline());
+                jo.put("flightid", al.getFlights().get(i).getFlightID());
+                jo.put("numberofseats", al.getFlights().get(i).getNumberOfSeats());
+                jo.put("date", al.getFlights().get(i).getDate());
+                jo.put("totalprice", al.getFlights().get(i).getTotalPrice());
+                jo.put("traveltime", al.getFlights().get(i).getTraveltime());
+                jo.put("origin", al.getFlights().get(i).getOrigin());
+                jo.put("destination", al.getFlights().get(i).getDestination());
+
+                jsonarray.add(jo);
             }
-
         }
-        returnString = returnString + "]";
-        return returnString;
-
+        Gson gson = new Gson();
+        String json = gson.toJson(jsonarray);
+        return json;
     }
-
 }
