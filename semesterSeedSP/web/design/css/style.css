@@ -1,6 +1,7 @@
 *{padding:0px; margin:0px; list-style-type:none; border:none; text-decoration:none !important;}
 body{padding:0px; margin:0px;}
 
+.logo{position: relative;}
 
 .wraper{display:block; width:100%; float:left;}
 
