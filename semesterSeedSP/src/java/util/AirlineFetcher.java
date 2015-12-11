@@ -8,6 +8,8 @@ package util;
 import com.google.gson.Gson;
 import entity.Airline;
 import entity.Flight;
+import entity.Url;
+import facades.UrlFacade;
 import interfaces.AirlinesIF;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import javax.persistence.Persistence;
 import static util.AirLineHelper.httpGetFromJSON;
 
 /**
@@ -27,13 +30,22 @@ import static util.AirLineHelper.httpGetFromJSON;
 // Implements multithreaded fetching of Airlines
 public class AirlineFetcher implements AirlinesIF {
 
+    private UrlFacade uf;
+    private List<String> urlStrings;
+    
+    public AirlineFetcher() {
+        uf = new UrlFacade(Persistence.createEntityManagerFactory("PU_NAME"));
+        urlStrings = new ArrayList();
+        for (Url u : uf.getUrls()) {
+            urlStrings.add(u.getUrlString());
+        }
+        
+    }
+    
     
     // TODO : implement facade and use JPA instead of List
-    public List<String> urls = new ArrayList<String>() {
-        {
-            add("http://angularairline-plaul.rhcloud.com/");
-        }
-    };
+    
+    
 
     // this is a thread capable of doing the FROM search 
     private class FromWorkerUnit implements Callable<Airline> {
@@ -44,6 +56,8 @@ public class AirlineFetcher implements AirlinesIF {
         private int persons;
 
        
+        
+        
         public FromWorkerUnit(String url, String from, String date, int persons) {
             this.url = url;
             this.from = from;
@@ -108,7 +122,7 @@ public class AirlineFetcher implements AirlinesIF {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
         List<Future<Airline>> futures = new ArrayList();
 
-        for (String url : airfetch.urls) {
+        for (String url : airfetch.urlStrings) {
             Future fut = threadPool.submit(airfetch.new FromWorkerUnit(url, from, timeDate, persons));
             futures.add(fut);
         }
@@ -137,7 +151,7 @@ public class AirlineFetcher implements AirlinesIF {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
         List<Future<Airline>> futures = new ArrayList();
 
-        for (String url : airfetch.urls) {
+        for (String url : airfetch.urlStrings) {
             Future fut = threadPool.submit(airfetch.new FromToWorkerUnit(url, from, to, timeDate, persons));
             futures.add(fut);
         }
