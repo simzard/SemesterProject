@@ -12,6 +12,7 @@
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/conf/persistence.xml</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/rest/ApplicationConfig.java</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Flight.java</file>
+            <file>file:/home/simon/SemesterProject/semesterSeedSP/web/app/view1/view1.js</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/facades/UrlFacade.java</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/exceptions/FlightNotFoundException.java</file>
             <file>file:/home/simon/SemesterProject/semesterSeedSP/src/java/entity/Url.java</file>

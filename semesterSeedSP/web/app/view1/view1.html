@@ -112,7 +112,7 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="submit_button_cdr"><br></br>
-                                                    <input type="submit" value="Search Flights"/>
+                                                    <input ng-click="ctrl.getInfo()" type="submit" value="Search Flights"/>
                                                 </div> 
                                             </div>
                                             <div class="col-sm-3">
@@ -916,6 +916,35 @@
     </div>
 </section>
 
+<div>
+    <ul ng-repeat="flight in ctrl.flightsInfo">
+       
+        <br><br>
+        <li>
+            {{flight.airline}}
+        </li>
+        <li>
+            {{flight.flightid}}
+        </li>
+        <li>
+            {{flight.date}}
+        </li>
+        <li>
+            {{flight.origin}}
+        </li>
+        <li>
+            {{flight.destination}}
+        </li>
+        <li>
+            {{flight.numberofseats}}
+        </li>
+        <li>
+            {{flight.totalprice}}
+        </li>
+    </ul>
+</div>
+
+
 <script type="text/javascript">
    $('.form_datetime').datetimepicker({
     //language:  'fr',
@@ -949,3 +978,4 @@ $('.form_time').datetimepicker({
     forceParse: 0
 });
 </script>
+

@@ -12,7 +12,7 @@ angular.module('myApp.view1', ['ngRoute'])
                 });
             }])
 
-        .controller('View1Ctrl', ["InfoFactory", "InfoService", function (InfoFactory, InfoService, $http) {
+        .controller('View1Ctrl', ["InfoFactory", "InfoService", "$http", "$scope", function (InfoFactory, InfoService, $http, $scope) {
 
                 var self = this;
                 self.fromCity = "";
@@ -32,41 +32,50 @@ angular.module('myApp.view1', ['ngRoute'])
                     self.buttonClicked = true;
 
 
-//                    $http.get("flightInfo/" + self.from + "/" + self.date + "/" + self.numberOfTickets).succes(function (data) {
+                    //$http.get("flightInfo/" + self.from + "/" + self.date + "/" + self.numberOfTickets).succes(function (data) {
+                     $http({
+            method: 'GET',
+            url: 'http://localhost:8084/semesterSeedSP/api/flightinfo/CPH/2016-01-04T23:00:00.000Z/3'
+          }).then(function successCallback(res) {
+            self.flightsInfo = res.data;
+          }, function errorCallback(res) {
+            $scope.error = res.status + ": "+ res.data.statusText;
+          });
+//                    $http.get("http://localhost:8084/semesterSeedSP/api/flightinfo/CPH/2016-01-04T23:00:00.000Z/3").succes(function (data) {
 //                        self.flightsInfo = data;
 //                    });
 
-                    self.dummyData = [
-                        {
-                            "airline": "AngularJS Airline",
-                            "flightId": "COL3256",
-                            "numberOfSeats": 3,
-                            "date": "2016-01-04T10:00:00.000Z",
-                            "priceTotal": 195.0,
-                            "travelTime": 90,
-                            "origin": "CPH",
-                            "destination": "STN"
-                        },
-                        {
-                            "airline": "Martins Airline",
-                            "flightId": "HUH3256",
-                            "numberOfSeats": 25,
-                            "date": "2016-01-04T10:00:00.000Z",
-                            "priceTotal": 40.0,
-                            "travelTime": 15,
-                            "origin": "CPH",
-                            "destination": "STN"
-                        },
-                        {
-                            "airline": "Simons Airline",
-                            "flightId": "SI16",
-                            "numberOfSeats": 250,
-                            "date": "2016-01-04T10:00:00.000Z",
-                            "priceTotal": 12,
-                            "travelTime": 20,
-                            "origin": "CPH",
-                            "destination": "STN"
-                        }
-                    ]
+//                    self.dummyData = [
+//                        {
+//                            "airline": "AngularJS Airline",
+//                            "flightId": "COL3256",
+//                            "numberOfSeats": 3,
+//                            "date": "2016-01-04T10:00:00.000Z",
+//                            "priceTotal": 195.0,
+//                            "travelTime": 90,
+//                            "origin": "CPH",
+//                            "destination": "STN"
+//                        },
+//                        {
+//                            "airline": "Martins Airline",
+//                            "flightId": "HUH3256",
+//                            "numberOfSeats": 25,
+//                            "date": "2016-01-04T10:00:00.000Z",
+//                            "priceTotal": 40.0,
+//                            "travelTime": 15,
+//                            "origin": "CPH",
+//                            "destination": "STN"
+//                        },
+//                        {
+//                            "airline": "Simons Airline",
+//                            "flightId": "SI16",
+//                            "numberOfSeats": 250,
+//                            "date": "2016-01-04T10:00:00.000Z",
+//                            "priceTotal": 12,
+//                            "travelTime": 20,
+//                            "origin": "CPH",
+//                            "destination": "STN"
+//                        }
+//                    ]
                 };
             }]);

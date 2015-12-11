@@ -6,6 +6,7 @@
 package util;
 
 import com.google.gson.Gson;
+import static deploy.DeploymentConfiguration.PU_NAME;
 import entity.Airline;
 import entity.Flight;
 import entity.Url;
@@ -26,27 +27,23 @@ import static util.AirLineHelper.httpGetFromJSON;
  *
  * @author simon
  */
-
 // Implements multithreaded fetching of Airlines
 public class AirlineFetcher implements AirlinesIF {
 
     private UrlFacade uf;
     private List<String> urlStrings;
-    
-    public AirlineFetcher() {
-        uf = new UrlFacade(Persistence.createEntityManagerFactory("PU_NAME"));
-        urlStrings = new ArrayList();
-        for (Url u : uf.getUrls()) {
-            urlStrings.add(u.getUrlString());
-        }
-        
-    }
-    
-    
-    // TODO : implement facade and use JPA instead of List
-    
-    
 
+    public AirlineFetcher() {
+//        uf = new UrlFacade(Persistence.createEntityManagerFactory(PU_NAME));
+          urlStrings = new ArrayList();
+//        for (Url u : uf.getUrls()) {
+//            urlStrings.add(u.getUrlString());
+//        }
+        urlStrings.add("http://angularairline-plaul.rhcloud.com");
+
+    }
+
+    // TODO : implement facade and use JPA instead of List
     // this is a thread capable of doing the FROM search 
     private class FromWorkerUnit implements Callable<Airline> {
 
@@ -55,9 +52,6 @@ public class AirlineFetcher implements AirlinesIF {
         private String date;
         private int persons;
 
-       
-        
-        
         public FromWorkerUnit(String url, String from, String date, int persons) {
             this.url = url;
             this.from = from;
@@ -75,13 +69,13 @@ public class AirlineFetcher implements AirlinesIF {
 
             Airline result = gson.fromJson(json, Airline.class);
 
-            
-
             return result;
         }
 
     }
+
     // this is a thread capable of doing the FROM TO search 
+
     private class FromToWorkerUnit implements Callable<Airline> {
 
         private String url;
@@ -106,8 +100,6 @@ public class AirlineFetcher implements AirlinesIF {
             Gson gson = new Gson();
 
             Airline result = gson.fromJson(json, Airline.class);
-
-            
 
             return result;
         }
@@ -141,8 +133,7 @@ public class AirlineFetcher implements AirlinesIF {
         return airlines;
 
     }
-    
-    
+
     // returns all the airlines given a FROM TO search
     public List<Airline> getAirlines(String from, String to, String timeDate, int persons) throws InterruptedException, ExecutionException {
 
@@ -170,12 +161,10 @@ public class AirlineFetcher implements AirlinesIF {
         return airlines;
 
     }
-    
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         AirlineFetcher af = new AirlineFetcher();
         List<Airline> airlines = af.getAirlines("CPH", "2016-01-04T23:00:00.000Z", 3);
-        
-       
-        
+
     }
 }
