@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-3 date_time">
-                                                <div class="date_time">
+<!--                                                <div class="date_time">
                                                     <label class="date_txt">Returning Date</label>
                                                     <form action="" class="form-horizontal"  role="form">
                                                         <div class="form-group">
@@ -66,7 +66,7 @@
                                                             <input type="hidden" id="dtp_input2" value="" /><br/>
                                                         </div>
                                                     </form>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div class="col-sm-4 date_time">
                                                 <div class="date_time">
@@ -83,11 +83,9 @@
                                                             </div>
                                                         </form>
                                                     </div>
-
                                                 </div>
                                             </div>                                 
                                         </div>
-
                                         <div class="row amout_sec">
                                             <div class="col-sm-3">
                                                 <div class="select_area">
@@ -100,15 +98,8 @@
                                                         <option value="AX">4</option>
                                                     </select>
                                                 </div>
-                                                <!--                                                                                <label class="label_txt">
-                                                                                                                                    <input type="checkbox" value=""> Non Stop Flight Only
-                                                
-                                                                                                                                </label>-->
                                             </div>
-
-
                                         </div>
-
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="submit_button_cdr"><br></br>
@@ -904,7 +895,6 @@
                                                 <div class="col-sm-3"></div>
                                                 <div class="col-sm-3"></div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -916,61 +906,61 @@
     </div>
 </section>
 
-<div class="wrapper">
-    <section class="list_section">
+<div ng-show="ctrl.buttonClicked">
+    <div ng-repeat="flight in ctrl.flightsInfo">
         <div class="container">
             <div class="row vg_bg">
                 <div class="col-sm-8">
                     <div class="row first_row_apart">
                         <div class="col-sm-2 boxex_pot1">
-                            <h5>American Airlines</h5>
-                            <div class="icon_airline"><img src="../design/images/airline_icon.png"/></div>
+                            <h5>{{flight.airline}}</h5>
+                            <div class="icon_airline"><img src="design/images/airline_icon.png"/></div>
                         </div>
                         <div class="col-sm-4 boxex_pot2">
-                            <h2>CPH 06:50</h2>
-                            <h5>Kavenhawn</h5>
+                            <h2>{{flight.origin}}</h2>
+                            <h5>{{flight.date}}</h5>
                         </div>
                         <div class="col-sm-2 boxex_pot3">
-                            <h3>23h-20m</h3>
-                            <img src="../design/images/icon-flight-legs.png">
+                            <h3>{{flight.traveltime}} min</h3>
+                            <img src="design/images/icon-flight-legs.png">
                             <h5>1 stop</h5>
                         </div>
                         <div class="col-sm-4 boxex_pot4">
-                            <h2>18:20 LAX</h2>
-                            <h5>Los Angeles</h5>
+                            <h2>{{flight.destination}}</h2>
+                            <h5>{{flight.date}}</h5>
                         </div>
                     </div>
+                    <!--                            <div class="row first_row_apart">
+                                                    <div class="col-sm-2 boxex_pot1">
+                                                        <h5>{{flight.airline}}</h5>
+                                                        <div class="icon_airline"><img src="../design/images/airline_icon1.png"/></div>
+                                                    </div>
+                                                    <div class="col-sm-4 boxex_pot2">
+                                                        <h2>LAX 08:34</h2>
+                                                        <h5>Los Angeles</h5>
+                                                    </div>
+                                                    <div class="col-sm-2 boxex_pot3">
+                                                        <h3>16h-30m</h3>
+                                                        <img src="../design/images/icon-flight-legs.png">
+                                                        <h5>2 stop</h5>
+                                                    </div>
+                                                    <div class="col-sm-4 boxex_pot4">
+                                                        <h2>9:40 CPH</h2>
+                                                        <h5>Kavenhawn</h5>
+                                                    </div>
+                                                </div>-->
                     <div class="row first_row_apart">
-                        <div class="col-sm-2 boxex_pot1">
-                            <h5>Untitled Airlines</h5>
-                            <div class="icon_airline"><img src="../design/images/airline_icon1.png"/></div>
-                        </div>
-                        <div class="col-sm-4 boxex_pot2">
-                            <h2>LAX 08:34</h2>
-                            <h5>Los Angeles</h5>
-                        </div>
-                        <div class="col-sm-2 boxex_pot3">
-                            <h3>16h-30m</h3>
-                            <img src="../design/images/icon-flight-legs.png">
-                            <h5>2 stop</h5>
-                        </div>
-                        <div class="col-sm-4 boxex_pot4">
-                            <h2>9:40 CPH</h2>
-                            <h5>Kavenhawn</h5>
-                        </div>
-                    </div>
-                    <div class="row first_row_apart">
                         <div class="col-sm-3 make_trip">
-                            <div class="view_button"><a class="#">Details</a></div>
+                            <div class="view_button"><a href="#">Details</a></div>
                         </div>
                         <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="../design/images/ic_icon.png">Flight Details</a></h5>
+                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon.png">Flight Details</a></h5>
                         </div>
                         <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="images/ic_icon1.png">Fare Details</a></h5>
+                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon1.png">Fare Details</a></h5>
                         </div>
                         <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="images/ic_icon2.png">Baggage</a></h5>
+                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon2.png">Baggage</a></h5>
                         </div>
                     </div>
                 </div>
@@ -978,23 +968,24 @@
                     <div class="row">
                         <div class="col-sm-6 make_trip">
                             <h5>Economy</h5>
-                            <div class="icon_ic_bh"><img src="../design/images/ic_icon3.png"/><img src="../design/images/ic_icon4.png"/></div>
+                            <div class="icon_ic_bh"><img src="design/images/ic_icon3.png"/><img src="design/images/ic_icon4.png"/></div>
                         </div>
-                        <div class="col-sm-3">
+<!--                        <div class="col-sm-3">
                             <div class="wrap_pti">
-                                <img src="../design/images/icon-love.png"/>
+                                <img src="design/images/icon-love.png"/>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-3">
                             <div class="wrap_pti">
-                                <img src="../design/images/icon-smile.png"/>
-                                <h5>8.3</h5>
+                                <img src="design/images/icon-smile.png"/>
+                                
+                                <h5>Seats: {{flight.numberofseats}}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="row last_rt_sec">
                         <div class="col-sm-12">
-                            <h2>3.635 <span class="small_part">DKK</span><img src="../design/images/ic_icon5.png"/></h2>
+                            <h2>{{flight.totalprice}}<span class="small_part">Euro</span><img src="design/images/ic_icon5.png"/></h2>
                         </div>
                     </div>
                     <div class="row last_rt_sec1">
@@ -1005,34 +996,35 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>
+
 <div>
-
-    <ul ng-repeat="flight in ctrl.flightsInfo">
-
-        <br><br>
-        <li>
-            {{flight.airline}}
-        </li>
-        <li>
-            {{flight.flightid}}
-        </li>
-        <li>
-            {{flight.date}}
-        </li>
-        <li>
-            {{flight.origin}}
-        </li>
-        <li>
-            {{flight.destination}}
-        </li>
-        <li>
-            {{flight.numberofseats}}
-        </li>
-        <li>
-            {{flight.totalprice}}
-        </li>
-    </ul>
+    <!--    <ul ng-repeat="flight in ctrl.flightsInfo">
+    
+            <br><br>
+            <li>
+                {{flight.airline}}
+            </li>
+            <li>
+                {{flight.flightid}}
+            </li>
+            <li>
+                {{flight.date}}
+            </li>
+            <li>
+                {{flight.origin}}
+            </li>
+            <li>
+                {{flight.destination}}
+            </li>
+            <li>
+                {{flight.numberofseats}}
+            </li>
+            <li>
+                {{flight.totalprice}}
+            </li>
+        </ul>-->
 </div>
 
 
