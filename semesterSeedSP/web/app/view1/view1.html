@@ -6,44 +6,62 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h2>Search For Flight</h2>
+<!--                        <div style="color: #fff">
+                            <div><strong>fromCity:</strong> {{ctrl.fromCity}}</div>
+                            <div><strong>toCity:</strong> {{ctrl.toCity}}</div>
+                            <div><strong>numberOfTickets:</strong> {{ctrl.numberOfTickets}}</div>
+                            <div><strong>fromDate:</strong> {{ctrl.fromDate}}</div>
+                            <div><strong>fromTime:</strong> {{ctrl.fromTime}}</div>
+                        </div>
+                        <br>-->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-
                         <div class="tab-content">
                             <div id="sectionA" class="tab-pane fade in active">
                                 <div class="tab-content">
-
                                     <div id="home" class="tab-pane fade in active">
 
-                                        <form class="form_sec" method="post">
-
+                                        <form class="form_sec">
                                             <div class="row text_area">
                                                 <div class="col-sm-4 lft_textarea">
                                                     <div class="lft_textarea">
-                                                        <label class="fontsize">FROM</label><input type="text" placeholder="Enter Airport or City">
+                                                        <label class="fontsize">FROM</label>
+                                                        <input ng-model="ctrl.fromCity" 
+                                                               type="text" placeholder="Enter Airport or City">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 lft_textarea">
                                                     <div class="rit_textarea">
-                                                        <label class="fontsize">TO</label><input type="text" placeholder="Enter Airport or City">
+                                                        <label class="fontsize">TO</label>
+                                                        <input ng-model="ctrl.toCity"
+                                                               type="text" placeholder="Enter Airport or City">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4"></div>
+                                                <div class="col-sm-4 lft_textarea">
+                                                    <div class="rit_textarea">
+                                                        <label class="fontsize">Number Of Tickets</label>
+                                                        <input ng-model="ctrl.numberOfTickets" 
+                                                               id="txtboxToFilter" type="number" min="1" max="20">
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
 
                                         <div class="row datepicker">
                                             <div class="col-sm-3 date_time">
                                                 <div class="date_time">
-                                                    <label class="date_txt">Departing Date</label>
+                                                    <label class="date_txt">Departure Date</label>
 
-                                                    <form action="" class="form-horizontal"  role="form">
+                                                    <form class="form-horizontal"  role="form">
                                                         <div class="form-group">
 
                                                             <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                                <input ng-model="ctrl.fromDate" 
+                                                                       class="form-control" size="16" type="text" value="" readonly>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                             </div>
@@ -52,30 +70,17 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3 date_time">
-<!--                                                <div class="date_time">
-                                                    <label class="date_txt">Returning Date</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
 
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>-->
-                                            </div>
                                             <div class="col-sm-4 date_time">
                                                 <div class="date_time">
+                                                    <label class="control-label date_txt">Departure Time</label>
                                                     <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
+                                                        <form class="form-horizontal"  role="form">
                                                             <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Time Picking</label>
+                                                                
                                                                 <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
+                                                                    <input ng-model="ctrl.fromTime"
+                                                                           class="form-control" size="16" type="text" value="" readonly>
                                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                                                 </div>
@@ -86,815 +91,15 @@
                                                 </div>
                                             </div>                                 
                                         </div>
-                                        <div class="row amout_sec">
-                                            <div class="col-sm-3">
-                                                <div class="select_area">
-                                                    <label class="name_area">Number Of Tickets</label>
-                                                    <select class="frm-field1 ">
-                                                        <option value="null">0</option>
-                                                        <option value="null">1</option>
-                                                        <option value="null">2</option>         
-                                                        <option value="AX">3</option>
-                                                        <option value="AX">4</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="submit_button_cdr"><br></br>
                                                     <input ng-click="ctrl.getInfo()" type="submit" value="Search Flights"/>
                                                 </div> 
                                             </div>
-                                            <div class="col-sm-3">
-
-                                            </div>
-                                            <div class="col-sm-3"></div>
-                                            <div class="col-sm-3"></div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="sectionB" class="tab-pane fade">
-                                <div class="tab-content">
 
-                                    <div id="home" class="tab-pane fade in active">
-
-                                        <form class="form_sec" method="post">
-
-                                            <div class="row radio_sec">
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Round-trip
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">One-Way
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Multy-City
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-
-                                            <div class="row text_area">
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="lft_textarea">
-                                                        <label class="fontsize">FROM</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="rit_textarea">
-                                                        <label class="fontsize">TO</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4"></div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <p></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row datepicker">
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Leave</label>
-
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Return</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <!--                                                                                <div class="col-sm-4">
-                                                                                                                                </div>-->
-                                            </div> 
-
-                                            <div class="row amout_sec">
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">Number Of Tickets</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">CHILDREN: (0-17)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">SENIORS: (65+)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>                       
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr">
-                                                        <input type="submit" value="Search"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr1">
-                                                        <input type="submit" value="Flight + Car"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-3"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="sectionC" class="tab-pane fade">
-                                <div class="tab-content">
-
-                                    <div id="home" class="tab-pane fade in active">
-
-                                        <form class="form_sec" method="post">
-
-                                            <div class="row radio_sec">
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Round-trip
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">One-Way
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Multy-City
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-                                            <div class="row text_area">
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="lft_textarea">
-                                                        <label class="fontsize">FROM:</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="rit_textarea">
-                                                        <label class="fontsize">TO:</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4"></div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <p></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row datepicker">
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Leave</label>
-
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Return</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div> 
-                                            <div class="row">
-                                                <!--                                                                                <div class="col-sm-12">
-                                                                                                                                    <div class="hotel_check">
-                                                                                                                                        <input type="checkbox" /><label>Non-stop flights only</label>
-                                                                                                                                    </div>
-                                                                                                                                </div>-->
-                                            </div>  
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <!--                                                                                    <div class="hotel_check">
-                                                                                                                                            <h2>HOTEL OPTION</h2>
-                                                                                                                                            <input type="checkbox" /><label>I only need a hotel for part of my trip.</label>
-                                                                                                                                            <p>Hotel stay must be within date range of Leave and Return.</p>
-                                                                                                                                        </div>-->
-                                                </div>
-                                            </div> 
-                                            <div class="row night_table">
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Check-in</label>
-
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Check-out</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                    <div class="night">
-                                                        Night
-                                                        <p>0</p>
-                                                    </div>
-                                                </div>
-                                            </div>            
-                                            <div class="row amout_sec">
-                                                <div class="col-sm-1">
-                                                    <div class="room">
-                                                        Room No 1
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">ADULTS: (18-64)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="row"> <div class="col-sm-12">
-                                                            noget tekst</div></div>
-
-
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">CHILDREN: (0-17)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">SENIORS: (65+)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div class="select_area">
-                                                        <label class="name_area"><a href="#"> Age categories</a></label>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="add_room">
-                                                        <a href="#">add room</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row amout_sec">
-                                                <div class="col-sm-1">
-                                                    <div class="room">
-                                                        Room No 2
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">ADULTS: (18-64)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">CHILDREN: (0-17)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">SENIORS: (65+)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div class="select_area">
-                                                        <label class="name_area"><a href="#"> Age categories</a></label>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <!--                                                                                    <label class="label_txt">
-                                                                                                                                            <p> Additional search options</p>
-                                                    
-                                                                                                                                            <input type="checkbox" value=""> Non Stop Flight Only
-                                                    
-                                                                                                                                        </label>-->
-                                                </div>
-                                            </div>
-                                            <div class="row promo_code">
-                                                <div class="col-sm-4">
-                                                    <div class="hotel_name">
-                                                        <h2>Hotel Name</h2>
-                                                        <input type="text" name="" placeholder="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="hotel_name">
-                                                        <h2>I have a promo code</h2>
-                                                        <input type="text" name="" placeholder="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr">
-                                                        <input type="submit" value="Search"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr1">
-                                                        <input type="submit" value="Flight + Hotel"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-3"></div>
-                                            </div>
-
-
-                                        </form>
-
-
-
-                                    </div>
-
-
-
-                                </div>		
-                            </div>
-                            <div id="sectionD" class="tab-pane fade">
-                                <div class="tab-content">
-
-                                    <div id="home" class="tab-pane fade in active">
-
-                                        <form class="form_sec" method="post">
-
-                                            <div class="row radio_sec">
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Round-trip
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">One-Way
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label class="radio-inline">
-                                                        <input name="radioGroup" id="radio1" value="option1" type="radio">Multy-City
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-2"></div>
-                                            </div>
-
-
-
-                                            <div class="row text_area">
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="lft_textarea">
-                                                        <label class="fontsize">FROM</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="rit_textarea">
-                                                        <label class="fontsize">TO</label><input type="text" placeholder="City name or airport">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4"></div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <p></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row datepicker">
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Leave</label>
-
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Return</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="select_area">
-                                                        <form action="" class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-                                                                <label for="dtp_input3" class="control-label">Any Time</label>
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div> 
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <!--                                                                                    <div class="hotel_check">
-                                                                                                                                            <input type="checkbox" /><label>Non-stop flights only</label>
-                                                                                                                                        </div>-->
-                                                </div>
-                                            </div>  
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="hotel_check">
-                                                        <h2>HOTEL OPTION</h2>
-                                                        <input type="checkbox" /><label>I only need a hotel for part of my trip.</label>
-                                                        <p>Hotel stay must be within date range of Leave and Return.</p>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <div class="row night_table">
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Check-in</label>
-
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <label class="date_txt">Check-out</label>
-                                                    <form action="" class="form-horizontal"  role="form">
-                                                        <div class="form-group">
-
-                                                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                    <div class="night">
-                                                        Night
-                                                        <p>0</p>
-                                                    </div>
-                                                </div>
-                                            </div>            
-                                            <div class="row amout_sec">
-                                                <div class="col-sm-1">
-                                                    <div class="room">
-                                                        Room No 1
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">ADULTS: (18-64)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">CHILDREN: (0-17)</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="add_room">
-                                                        <a href="#">add room</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row amout_sec">
-                                                <div class="col-sm-1">
-                                                    <div class="room">
-                                                        Room No 2
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="select_area">
-                                                        <label class="name_area">Number Of Tickets</label>
-                                                        <select class="frm-field1 ">
-                                                            <option value="null">0</option>
-                                                            <option value="null">1</option>
-                                                            <option value="null">2</option>         
-                                                            <option value="AX">3</option>
-                                                            <option value="AX">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                </div>
-                                            </div>
-                                            <div class="row promo_code">
-                                                <div class="col-sm-4">
-                                                    <div class="hotel_name">
-                                                        <h2>Hotel Name</h2>
-                                                        <input type="text" name="" placeholder="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="hotel_name">
-                                                        <h2>I have a promo code</h2>
-                                                        <input type="text" name="" placeholder="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr">
-                                                        <input type="submit" value="Search"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="submit_button_cdr1">
-                                                        <input type="submit" value="Flight + Hotel + Car"/>
-                                                    </div> 
-                                                </div>
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-3"></div>
-                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -970,15 +175,15 @@
                             <h5>Economy</h5>
                             <div class="icon_ic_bh"><img src="design/images/ic_icon3.png"/><img src="design/images/ic_icon4.png"/></div>
                         </div>
-<!--                        <div class="col-sm-3">
-                            <div class="wrap_pti">
-                                <img src="design/images/icon-love.png"/>
-                            </div>
-                        </div>-->
+                        <!--                        <div class="col-sm-3">
+                                                    <div class="wrap_pti">
+                                                        <img src="design/images/icon-love.png"/>
+                                                    </div>
+                                                </div>-->
                         <div class="col-sm-3">
                             <div class="wrap_pti">
                                 <img src="design/images/icon-smile.png"/>
-                                
+
                                 <h5>Seats: {{flight.numberofseats}}</h5>
                             </div>
                         </div>
@@ -1040,7 +245,7 @@
                 showMeridian: 1
             });
             $('.form_date').datetimepicker({
-                language: 'fr',
+                //language: 'fr',
                 weekStart: 1,
                 todayBtn: 1,
                 autoclose: 1,
@@ -1050,7 +255,7 @@
                 forceParse: 0
             });
             $('.form_time').datetimepicker({
-                language: 'fr',
+                //language: 'fr',
                 weekStart: 1,
                 todayBtn: 1,
                 autoclose: 1,
@@ -1061,4 +266,25 @@
                 forceParse: 0
             });
 </script>
-
+<script type="text/javascript">
+            // code to make sure the user can only input numbers in number field
+            $("#txtboxToFilter").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        // Allow: Ctrl+A
+                                (e.keyCode == 65 && e.ctrlKey === true) ||
+                                // Allow: Ctrl+C
+                                        (e.keyCode == 67 && e.ctrlKey === true) ||
+                                        // Allow: Ctrl+X
+                                                (e.keyCode == 88 && e.ctrlKey === true) ||
+                                                // Allow: home, end, left, right
+                                                        (e.keyCode >= 35 && e.keyCode <= 39)) {
+                                            // let it happen, don't do anything
+                                            return;
+                                        }
+                                        // Ensure that it is a number and stop the keypress
+                                        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                            e.preventDefault();
+                                        }
+                                    });
+</script>

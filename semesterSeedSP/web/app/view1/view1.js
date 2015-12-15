@@ -1,8 +1,53 @@
 'use strict';
 
+function convertDate(date) {
+    // format: "day month year
+    // input: "Tue Dec 15 2015"
+    // desired: "15 December 2015"
+    var month;
+    switch(date.getMonth()) {
+        case 0:
+            month = "January";
+            break;
+        case 1:
+            month = "February";
+            break;
+        case 2:
+            month = "March";
+            break;
+        case 3:
+            month = "April";
+            break;
+        case 4:
+            month = "May";
+            break;
+        case 5:
+            month = "June";
+            break;
+        case 6:
+            month = "July";
+            break;
+        case 7:
+            month = "August";
+            break;
+        case 8:
+            month = "September";
+            break;
+        case 9:
+            month = "October";
+            break;
+        case 10:
+            month = "November";
+            break;
+        case 11:
+            month = "December";
+            break;
+    }
+    
+  return date.getDate() + " " + month + " " + date.getFullYear();
+};
 
-
-angular.module('myApp.view1', ['ngRoute'])
+ angular.module('myApp.view1', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view1', {
@@ -15,12 +60,22 @@ angular.module('myApp.view1', ['ngRoute'])
         .controller('View1Ctrl', ["InfoFactory", "InfoService", "$http", "$scope", function (InfoFactory, InfoService, $http, $scope) {
 
                 var self = this;
-                self.fromCity = "";
-                self.toCity = "";
-                self.fromDate = "";
-                self.toDate = "";
+                self.fromCity = "choose city";
+                self.toCity = "choose city";
+                
+                
+                // always suggest the next time from the current time + 1 hour
+                var d = new Date();
+                var minutes = d.getMinutes();
+                if (minutes % 5 != 0) minutes = 0;
+                if (minutes < 10 ) minutes = "0" + minutes;
+                self.fromTime = d.getHours() + 1 + ":" + minutes;
+                
+                self.fromDate = convertDate(d);
+                
+                
+                self.numberOfTickets = 1;
 
-                self.numberOfTickets = 0;
 
                 this.msgFromFactory = InfoFactory.getInfo();
                 this.msgFromService = InfoService.getInfo();
