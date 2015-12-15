@@ -1,11 +1,16 @@
 'use strict';
 
+var dots = "";
+
+
+
+
 function convertDate(date) {
     // format: "day month year
     // input: "Tue Dec 15 2015"
     // desired: "15 December 2015"
     var month;
-    switch(date.getMonth()) {
+    switch (date.getMonth()) {
         case 0:
             month = "January";
             break;
@@ -43,11 +48,12 @@ function convertDate(date) {
             month = "December";
             break;
     }
-    
-  return date.getDate() + " " + month + " " + date.getFullYear();
-};
 
- angular.module('myApp.view1', ['ngRoute'])
+    return date.getDate() + " " + month + " " + date.getFullYear();
+}
+;
+
+angular.module('myApp.view1', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view1', {
@@ -57,45 +63,116 @@ function convertDate(date) {
                 });
             }])
 
-        .controller('View1Ctrl', ["InfoFactory", "InfoService", "$http", "$scope", function (InfoFactory, InfoService, $http, $scope) {
+        .controller('View1Ctrl', ["AirlineFactory", function (AirlineFactory) {
 
                 var self = this;
-                self.fromCity = "choose city";
-                self.toCity = "choose city";
-                
-                
+                //self.fromCity = "Copen";
+                //self.toCity = "choose city";
+
+                // options in select boxes
+                self.fromData = {
+                    availableOptions: [
+                        {id: 'CPH', name: 'Copenhagen (CPH)'},
+                        {id: 'STN', name: 'London (STN)'},
+                        {id: 'SXF', name: 'Berlin (SXF)'},
+                        {id: 'PAR', name: 'Paris (PAR)'},
+                        {id: 'JRA', name: 'New York (JRA)'},
+                        {id: 'NRT', name: 'Tokyo (NRT)'},
+                        {id: 'NAY', name: 'Beijing (NAY)'},
+                        {id: 'MOW', name: 'Moscow (MOW)'},
+                        {id: 'MAD', name: 'Madrid (Mad)'},
+                        {id: 'BMA', name: 'Stockholm (BMA)'},
+                    ],
+                    selectedOption: {id: 'CPH', name: 'Copenhagen (CPH)'} //This sets the default value of the select in the ui
+                };
+
+                self.toData = {
+                    availableOptions: [
+                        {id: 'CPH', name: 'Copenhagen (CPH)'},
+                        {id: 'STN', name: 'London (STN)'},
+                        {id: 'SXF', name: 'Berlin (SXF)'},
+                        {id: 'PAR', name: 'Paris (PAR)'},
+                        {id: 'JRA', name: 'New York (JRA)'},
+                        {id: 'NRT', name: 'Tokyo (NRT)'},
+                        {id: 'NAY', name: 'Beijing (NAY)'},
+                        {id: 'MOW', name: 'Moscow (MOW)'},
+                        {id: 'MAD', name: 'Madrid (Mad)'},
+                        {id: 'BMA', name: 'Stockholm (BMA)'},
+                    ],
+                    selectedOption: {id: 'choose city', name: 'choose city'} //This sets the default value of the select in the ui
+                };
+
                 // always suggest the next time from the current time + 1 hour
                 var d = new Date();
                 var minutes = d.getMinutes();
-                if (minutes % 5 != 0) minutes = 0;
-                if (minutes < 10 ) minutes = "0" + minutes;
+                if (minutes % 5 != 0)
+                    minutes = 0;
+                if (minutes < 10)
+                    minutes = "0" + minutes;
                 self.fromTime = d.getHours() + 1 + ":" + minutes;
-                
+
                 self.fromDate = convertDate(d);
-                
-                
+
+
                 self.numberOfTickets = 1;
 
 
-                this.msgFromFactory = InfoFactory.getInfo();
-                this.msgFromService = InfoService.getInfo();
-
-                self.buttonClicked = false;
-
                 self.getInfo = function () {
 
-                    self.buttonClicked = true;
+                    console.log(self.fromData.selectedOption.id);
+                    console.log(self.toData.selectedOption.id);
+                    console.log(self.numberOfTickets);
+                    
+                    function convertToIsoDate(date, time) {
+    
+                        return '2016-01-04T23:00:00.000Z';
+                    }
+                    
+                    
+                    var isoDate = convertToIsoDate(self.fromDate, self.fromTime);
+                    
+                    //construct isoDate
+                    isoDate+= d.getFullYear() + "-" + d.getMonth()
+
+                    AirlineFactory.makeRESTcall(
+                            self.fromData.selectedOption.id,
+                            self.toData.selectedOption.id,
+                            isoDate,
+                            self.numberOfTickets
+                            );
+                    
+                    self.flightsInfo = AirlineFactory.getFlights();
+
+                    var myTimer;
+
+                    function loadProgress() {
+
+                        if (self.flightsInfo.length > 0) {
+                            clearInterval(myTimer);
+                            window.location = '#/view2';
+                        } else {
+                            dots += ".";
+                            document.getElementById("result").innerHTML = dots;
+                        }
+                    }
+
+                    myTimer = setInterval(loadProgress, 500);
 
 
+
+
+
+
+                    console.log(self.flightsInfo);
                     //$http.get("flightInfo/" + self.from + "/" + self.date + "/" + self.numberOfTickets).succes(function (data) {
-                     $http({
-            method: 'GET',
-            url: 'http://localhost:8084/semesterSeedSP/api/flightinfo/CPH/2016-01-04T23:00:00.000Z/3'
-          }).then(function successCallback(res) {
-            self.flightsInfo = res.data;
-          }, function errorCallback(res) {
-            $scope.error = res.status + ": "+ res.data.statusText;
-          });
+//                    $http({
+//                        method: 'GET',
+//                        url: 'api/flightinfo/CPH/2016-01-04T23:00:00.000Z/3'
+//                    }).then(function successCallback(res) {
+//                        self.flightsInfo = res.data;
+//                    }, function errorCallback(res) {
+//                        $scope.error = res.status + ": " + res.data.statusText;
+//                    });
 //                    $http.get("http://localhost:8084/semesterSeedSP/api/flightinfo/CPH/2016-01-04T23:00:00.000Z/3").succes(function (data) {
 //                        self.flightsInfo = data;
 //                    });

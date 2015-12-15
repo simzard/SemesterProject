@@ -6,14 +6,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h2>Search For Flight</h2>
-<!--                        <div style="color: #fff">
-                            <div><strong>fromCity:</strong> {{ctrl.fromCity}}</div>
-                            <div><strong>toCity:</strong> {{ctrl.toCity}}</div>
+                        <div style="color: #fff">
+                            <div><strong>fromCity:</strong> {{ctrl.fromData.selectedOption.id}}</div>
+                            <div><strong>toCity:</strong> {{ctrl.toData.selectedOption.id}}</div>
                             <div><strong>numberOfTickets:</strong> {{ctrl.numberOfTickets}}</div>
                             <div><strong>fromDate:</strong> {{ctrl.fromDate}}</div>
                             <div><strong>fromTime:</strong> {{ctrl.fromTime}}</div>
                         </div>
-                        <br>-->
+                        <br>
                     </div>
                 </div>
                 <div class="row">
@@ -28,15 +28,19 @@
                                                 <div class="col-sm-4 lft_textarea">
                                                     <div class="lft_textarea">
                                                         <label class="fontsize">FROM</label>
-                                                        <input ng-model="ctrl.fromCity" 
-                                                               type="text" placeholder="Enter Airport or City">
+                                                        <select
+                                                            ng-options="option.name for option in ctrl.fromData.availableOptions track by option.id"
+                                                            ng-model="ctrl.fromData.selectedOption">
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 lft_textarea">
                                                     <div class="rit_textarea">
                                                         <label class="fontsize">TO</label>
-                                                        <input ng-model="ctrl.toCity"
-                                                               type="text" placeholder="Enter Airport or City">
+                                                        <select
+                                                            ng-options="option.name for option in ctrl.toData.availableOptions track by option.id"
+                                                            ng-model="ctrl.toData.selectedOption">
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4"></div>
@@ -54,7 +58,7 @@
                                         <div class="row datepicker">
                                             <div class="col-sm-3 date_time">
                                                 <div class="date_time">
-                                                    <label class="date_txt">Departure Date</label>
+                                                    <label class="date_txt">Date Departure</label>
 
                                                     <form class="form-horizontal"  role="form">
                                                         <div class="form-group">
@@ -73,11 +77,11 @@
 
                                             <div class="col-sm-4 date_time">
                                                 <div class="date_time">
-                                                    <label class="control-label date_txt">Departure Time</label>
+                                                    <label class="control-label date_txt">Time Departure</label>
                                                     <div class="select_area">
                                                         <form class="form-horizontal"  role="form">
                                                             <div class="form-group">
-                                                                
+
                                                                 <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
                                                                     <input ng-model="ctrl.fromTime"
                                                                            class="form-control" size="16" type="text" value="" readonly>
@@ -95,7 +99,9 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="submit_button_cdr"><br></br>
-                                                    <input ng-click="ctrl.getInfo()" type="submit" value="Search Flights"/>
+
+                                                    <input ng-click="ctrl.getInfo()"type="submit" value="Search Flights"/>
+                                                    <div id="result">Result</div>
                                                 </div> 
                                             </div>
                                         </div>
@@ -110,128 +116,6 @@
         </div>
     </div>
 </section>
-
-<div ng-show="ctrl.buttonClicked">
-    <div ng-repeat="flight in ctrl.flightsInfo">
-        <div class="container">
-            <div class="row vg_bg">
-                <div class="col-sm-8">
-                    <div class="row first_row_apart">
-                        <div class="col-sm-2 boxex_pot1">
-                            <h5>{{flight.airline}}</h5>
-                            <div class="icon_airline"><img src="design/images/airline_icon.png"/></div>
-                        </div>
-                        <div class="col-sm-4 boxex_pot2">
-                            <h2>{{flight.origin}}</h2>
-                            <h5>{{flight.date}}</h5>
-                        </div>
-                        <div class="col-sm-2 boxex_pot3">
-                            <h3>{{flight.traveltime}} min</h3>
-                            <img src="design/images/icon-flight-legs.png">
-                            <h5>1 stop</h5>
-                        </div>
-                        <div class="col-sm-4 boxex_pot4">
-                            <h2>{{flight.destination}}</h2>
-                            <h5>{{flight.date}}</h5>
-                        </div>
-                    </div>
-                    <!--                            <div class="row first_row_apart">
-                                                    <div class="col-sm-2 boxex_pot1">
-                                                        <h5>{{flight.airline}}</h5>
-                                                        <div class="icon_airline"><img src="../design/images/airline_icon1.png"/></div>
-                                                    </div>
-                                                    <div class="col-sm-4 boxex_pot2">
-                                                        <h2>LAX 08:34</h2>
-                                                        <h5>Los Angeles</h5>
-                                                    </div>
-                                                    <div class="col-sm-2 boxex_pot3">
-                                                        <h3>16h-30m</h3>
-                                                        <img src="../design/images/icon-flight-legs.png">
-                                                        <h5>2 stop</h5>
-                                                    </div>
-                                                    <div class="col-sm-4 boxex_pot4">
-                                                        <h2>9:40 CPH</h2>
-                                                        <h5>Kavenhawn</h5>
-                                                    </div>
-                                                </div>-->
-                    <div class="row first_row_apart">
-                        <div class="col-sm-3 make_trip">
-                            <div class="view_button"><a href="#">Details</a></div>
-                        </div>
-                        <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon.png">Flight Details</a></h5>
-                        </div>
-                        <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon1.png">Fare Details</a></h5>
-                        </div>
-                        <div class="col-sm-3 make_trip">
-                            <h5 class="last_tab"><a href="#"><img src="design/images/ic_icon2.png">Baggage</a></h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 right_sec">
-                    <div class="row">
-                        <div class="col-sm-6 make_trip">
-                            <h5>Economy</h5>
-                            <div class="icon_ic_bh"><img src="design/images/ic_icon3.png"/><img src="design/images/ic_icon4.png"/></div>
-                        </div>
-                        <!--                        <div class="col-sm-3">
-                                                    <div class="wrap_pti">
-                                                        <img src="design/images/icon-love.png"/>
-                                                    </div>
-                                                </div>-->
-                        <div class="col-sm-3">
-                            <div class="wrap_pti">
-                                <img src="design/images/icon-smile.png"/>
-
-                                <h5>Seats: {{flight.numberofseats}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row last_rt_sec">
-                        <div class="col-sm-12">
-                            <h2>{{flight.totalprice}}<span class="small_part">Euro</span><img src="design/images/ic_icon5.png"/></h2>
-                        </div>
-                    </div>
-                    <div class="row last_rt_sec1">
-                        <div class="col-sm-12">
-                            <div class="right_sec_btn"><a href="#">Book Now</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div>
-    <!--    <ul ng-repeat="flight in ctrl.flightsInfo">
-    
-            <br><br>
-            <li>
-                {{flight.airline}}
-            </li>
-            <li>
-                {{flight.flightid}}
-            </li>
-            <li>
-                {{flight.date}}
-            </li>
-            <li>
-                {{flight.origin}}
-            </li>
-            <li>
-                {{flight.destination}}
-            </li>
-            <li>
-                {{flight.numberofseats}}
-            </li>
-            <li>
-                {{flight.totalprice}}
-            </li>
-        </ul>-->
-</div>
-
 
 <script type="text/javascript">
             $('.form_datetime').datetimepicker({
