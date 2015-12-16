@@ -3,9 +3,56 @@
 var dots = "";
 
 
+function convertFromDatePickerToISODate(datepickerDate) {
+    var tokens = datepickerDate.split(" ");
+    var day = parseInt(tokens[0]);
+    var month;
+    switch (tokens[1]) {
+        case "January":
+            month = 0;
+            break;
+        case "February":
+            month = 1;
+            break;
+        case "March":
+            month = 2;
+            break;
+        case "April":
+            month = 3;
+            break;
+        case "May":
+            month = 4;
+            break;
+        case "June":
+            month = 5;
+            break;
+        case "July":
+            month = 6;
+            break;
+        case "August":
+            month = 7;
+            break;
+        case "September":
+            month = 8;
+            break;
+        case "October":
+            month = 9;
+            break;
+        case "November":
+            month = 10;
+            break;
+        case "December":
+            month = 11;
+            break;
+        
+    }
+    var year = tokens[2];
+    var theDate = new Date(year, month, day, 1).toISOString();
+    console.log("theDate: " + theDate);
+    return theDate;
+}
 
-
-function convertDate(date) {
+function convertFromDateToDatePicker(date) {
     // format: "day month year
     // input: "Tue Dec 15 2015"
     // desired: "15 December 2015"
@@ -66,9 +113,7 @@ angular.module('myApp.view1', ['ngRoute'])
         .controller('View1Ctrl', ["AirlineFactory", function (AirlineFactory) {
 
                 var self = this;
-                //self.fromCity = "Copen";
-                //self.toCity = "choose city";
-
+                
                 // options in select boxes
                 self.fromData = {
                     availableOptions: [
@@ -104,40 +149,28 @@ angular.module('myApp.view1', ['ngRoute'])
 
                 // always suggest the next time from the current time + 1 hour
                 var d = new Date();
-                var minutes = d.getMinutes();
-                if (minutes % 5 != 0)
-                    minutes = 0;
-                if (minutes < 10)
-                    minutes = "0" + minutes;
-                self.fromTime = d.getHours() + 1 + ":" + minutes;
-
-                self.fromDate = convertDate(d);
-
-
+    
+                self.fromDate = convertFromDateToDatePicker(d);
+                
                 self.numberOfTickets = 1;
 
+                self.isoDate;
 
                 self.getInfo = function () {
+
+                    //construct isoDate
+                    self.isoDate = convertFromDatePickerToISODate(self.fromDate);
 
                     console.log(self.fromData.selectedOption.id);
                     console.log(self.toData.selectedOption.id);
                     console.log(self.numberOfTickets);
+                                       
                     
-                    function convertToIsoDate(date, time) {
-    
-                        return '2016-01-04T23:00:00.000Z';
-                    }
-                    
-                    
-                    var isoDate = convertToIsoDate(self.fromDate, self.fromTime);
-                    
-                    //construct isoDate
-                    isoDate+= d.getFullYear() + "-" + d.getMonth()
 
                     AirlineFactory.makeRESTcall(
                             self.fromData.selectedOption.id,
                             self.toData.selectedOption.id,
-                            isoDate,
+                            self.isoDate,
                             self.numberOfTickets
                             );
                     
