@@ -206,6 +206,7 @@ angular.module('myApp.view1', ['ngRoute'])
                             //reset for next press
                             maxWait = 5;
                         } else {
+                            // add another dot for the 'animation'
                             document.getElementById("result").innerHTML += ".";
                         }
 

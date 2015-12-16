@@ -5,16 +5,9 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2>Search For Flight</h2>
-                        <!--                        <div style="color: #fff">
-                                                    <div><strong>fromCity:</strong> {{ctrl.fromData.selectedOption.id}}</div>
-                                                    <div><strong>toCity:</strong> {{ctrl.toData.selectedOption.id}}</div>
-                                                    <div><strong>numberOfTickets:</strong> {{ctrl.numberOfTickets}}</div>
-                                                    <div><strong>fromDate:</strong> {{ctrl.fromDate}}</div>
-                                                    <div><strong>isoDate:</strong> {{ctrl.isoDate}}</div>
-                                                   </div>
-                                                <br>-->
+                        <h2>Search For Flight</h2>                        
                     </div>
+                    <div class="row"><br></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -44,28 +37,29 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4"></div>
-                                                <div class="col-sm-4 lft_textarea">
-                                                    <div class="rit_textarea">
-                                                        <label class="fontsize">Number Of Tickets</label>
-                                                        <input ng-model="ctrl.numberOfTickets" 
-                                                               id="txtboxToFilter" type="number" min="1" max="20">
-
-                                                    </div>
-                                                </div>
+                                                <!--                                                <div class="col-sm-4 lft_textarea">
+                                                                                                    <div class="rit_textarea">
+                                                                                                        <label class="fontsize">Number Of Tickets</label>
+                                                                                                        <input ng-model="ctrl.numberOfTickets" 
+                                                                                                               id="txtboxToFilter" type="number" min="1" max="20">
+                                                
+                                                                                                    </div>
+                                                                                                </div>-->
                                             </div>
                                         </form>
+                                        <div class="row"><br></div>
 
                                         <div class="row datepicker">
-                                            <div class="col-sm-3 date_time">
+                                            <div class="col-sm-3">
                                                 <div class="date_time">
-                                                    <label class="date_txt">Date Departure</label>
+                                                    <label id = "departure" class="date_txt">DATE OF DEPARTURE</label>
 
                                                     <form class="form-horizontal"  role="form">
                                                         <div class="form-group">
 
                                                             <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                                 <input ng-model="ctrl.fromDate" 
-                                                                       class="form-control" size="16" type="text" value="" readonly>
+                                                                       class="form-control" type="text" value="" readonly>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                             </div>
@@ -75,6 +69,16 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-sm-3 lft_textarea">
+
+                                                <div class="rit_textarea">
+                                                    <label id="numTick" class="date_txt">NUMBER OF TICKETS</label>
+                                                    <!--<label class="fontsize">Number Of Tickets</label>-->
+                                                    <input ng-model="ctrl.numberOfTickets" 
+                                                           id="txtboxToFilter" type="number" min="1" max="20">
+
+                                                </div>
+                                            </div>
 
                                         </div>
 
@@ -82,11 +86,11 @@
                                             <div class="col-sm-3">
                                                 <div class="submit_button_cdr"><br></br>
 
-                                                    <input ng-click="ctrl.getInfo()"type="submit" value="Search Flights"/>
+                                                    <input ng-click="ctrl.getInfo()"type="submit" value="SEARCH"/>
 
                                                 </div> 
                                             </div>
-                                            <div class="col-sm5">
+                                            <div class="col-sm3">
                                                 <div class="sumbit-button_cdr"><br><br>
                                                     <h3 id="result"></h3>
                                                 </div>
