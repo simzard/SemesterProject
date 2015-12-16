@@ -6,14 +6,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h2>Search For Flight</h2>
-<!--                        <div style="color: #fff">
-                            <div><strong>fromCity:</strong> {{ctrl.fromData.selectedOption.id}}</div>
-                            <div><strong>toCity:</strong> {{ctrl.toData.selectedOption.id}}</div>
-                            <div><strong>numberOfTickets:</strong> {{ctrl.numberOfTickets}}</div>
-                            <div><strong>fromDate:</strong> {{ctrl.fromDate}}</div>
-                            <div><strong>isoDate:</strong> {{ctrl.isoDate}}</div>
-                           </div>
-                        <br>-->
+                        <!--                        <div style="color: #fff">
+                                                    <div><strong>fromCity:</strong> {{ctrl.fromData.selectedOption.id}}</div>
+                                                    <div><strong>toCity:</strong> {{ctrl.toData.selectedOption.id}}</div>
+                                                    <div><strong>numberOfTickets:</strong> {{ctrl.numberOfTickets}}</div>
+                                                    <div><strong>fromDate:</strong> {{ctrl.fromDate}}</div>
+                                                    <div><strong>isoDate:</strong> {{ctrl.isoDate}}</div>
+                                                   </div>
+                                                <br>-->
                     </div>
                 </div>
                 <div class="row">
@@ -75,25 +75,25 @@
                                                 </div>
                                             </div>
 
-<!--                                            <div class="col-sm-4 date_time">
-                                                <div class="date_time">
-                                                    <label class="control-label date_txt">Time Departure</label>
-                                                    <div class="select_area">
-                                                        <form class="form-horizontal"  role="form">
-                                                            <div class="form-group">
-
-                                                                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                                                                    <input ng-model="ctrl.fromTime"
-                                                                           class="form-control" size="16" type="text" value="" readonly>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                                                </div>
-                                                                <input type="hidden" id="dtp_input3" value="" /><br/>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>                                 -->
+                                            <!--                                            <div class="col-sm-4 date_time">
+                                                                                            <div class="date_time">
+                                                                                                <label class="control-label date_txt">Time Departure</label>
+                                                                                                <div class="select_area">
+                                                                                                    <form class="form-horizontal"  role="form">
+                                                                                                        <div class="form-group">
+                                            
+                                                                                                            <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                                                                                                                <input ng-model="ctrl.fromTime"
+                                                                                                                       class="form-control" size="16" type="text" value="" readonly>
+                                                                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                                                                                            </div>
+                                                                                                            <input type="hidden" id="dtp_input3" value="" /><br/>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>                                 -->
                                         </div>
 
                                         <div class="row">
@@ -101,12 +101,14 @@
                                                 <div class="submit_button_cdr"><br></br>
 
                                                     <input ng-click="ctrl.getInfo()"type="submit" value="Search Flights"/>
-                                                    
+
                                                 </div> 
                                             </div>
-                                            <div class="col-sm3">
-                                                <div class="sumbit-button_cdr"><br><br><br>
-                                                    <div id="result">Result</div>
+                                            <div class="col-sm5">
+                                                <div class="sumbit-button_cdr"><br><br>
+                                                    <h3 id="result">
+                                                        {{ctrl.result}}
+                                                    </h3>
                                                 </div>
                                             </div>
                                         </div>
