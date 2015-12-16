@@ -64,8 +64,12 @@ input[type="text"] {
 
 #result {
     position: relative;
-    top: -10px;
-    left: -80px;
+    top:  0px;
+    left: 10x;
+}
+#bottom {
+    position: relative;
+    left: 10px;
 }
 
 input[type="number"] {
@@ -152,7 +156,7 @@ input[type="number"] {
 	background: #32A2E3;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
-	padding: 15px 45px;
+	padding: 20px 60px;
 	border: none;
 	font-size: 1em;
 	transition: 0.5s all;
