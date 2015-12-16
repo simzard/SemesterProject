@@ -197,7 +197,7 @@ angular.module('myApp.view1', ['ngRoute'])
                                     }
                                     document.getElementById("result").style.color = "red";
                                     self.result = "No flights found from " + from + to
-                                            + " on the given date ";
+                                            + " on the chosen date ";
                                 }
                             }).error(function (error) {
                                 self.result = "Failure!";
