@@ -10,6 +10,9 @@ import com.google.gson.JsonArray;
 import entity.Airline;
 import entity.Flight;
 import entity.Ticket;
+import exceptions.FlightNotFoundException;
+import exceptions.IllegalInputException;
+import exceptions.UnknownErrorException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -52,11 +55,30 @@ public class FlightsResource {
     public String getFlightInfo(
             @PathParam("from") String from,
             @PathParam("date") String date,
-            @PathParam("numTickets") int tickets) {
+            @PathParam("numTickets") int tickets)
+            throws IllegalInputException
+    
+  {
+  
+   if (tickets==0){
+   
+       throw new IllegalInputException("You must at least search for 1 ticket");
+   
+   }
+      
+   
+//   if (from.equalsIgnoreCase("CPH") || date.isEmpty() || tickets.isEmpty()){
+//   
+//       throw new IllegalInputException("Illegal input");
+//   
+//   }
+   
 
         AirlineFetcher af = new AirlineFetcher();
         List<Airline> airlines = null;
 
+//        int parsedTicket = Integer.parseInt(tickets);
+        
         try {
             airlines = af.getAirlines(from, date, tickets);
         } catch (InterruptedException ex) {
@@ -103,13 +125,18 @@ public class FlightsResource {
             @PathParam("from") String from,
             @PathParam("to") String to,
             @PathParam("date") String date,
-            @PathParam("numTickets") int tickets) {
+            @PathParam("numTickets") int tickets)
+    
+    {
 
         AirlineFetcher af = new AirlineFetcher();
         List<Airline> airlines = null;
 
         try {
             airlines = af.getAirlines(from, to, date, tickets);
+            
+           
+            
         } catch (InterruptedException ex) {
             Logger.getLogger(FlightsResource.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -142,3 +169,4 @@ public class FlightsResource {
         return json;
     }
 }
+
